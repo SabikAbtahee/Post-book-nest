@@ -14,8 +14,6 @@ export class EntityBase {
     type: Date,
     required: true,
     default: () => new Date(),
-
-    
   })
   LastUpdateDate: Date;
 

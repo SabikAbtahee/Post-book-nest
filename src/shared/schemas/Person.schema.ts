@@ -1,9 +1,14 @@
+import { EntityNames } from '../constants/Entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { EntityBase } from './EntityBase.schema';
 export type PersonDocument = Person & Document;
 
-@Schema({ collection: 'Person', versionKey: false })
+@Schema({
+  collection: EntityNames.Persons,
+  autoIndex: false,
+  optimisticConcurrency: true,
+})
 export class Person extends EntityBase {
   @Prop()
   FirstName: string;
