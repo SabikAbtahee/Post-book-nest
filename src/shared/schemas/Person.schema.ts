@@ -5,25 +5,25 @@ import { EntityBase } from './EntityBase.schema';
 export type PersonDocument = Person & Document;
 
 @Schema({
-  collection: EntityNames.Persons,
-  autoIndex: false,
-  optimisticConcurrency: true,
+	collection: EntityNames.Persons,
+	autoIndex: false,
+	optimisticConcurrency: true
 })
 export class Person extends EntityBase {
-  @Prop()
-  FirstName: string;
+	@Prop()
+	FirstName: string;
 
-  @Prop()
-  LastName: string;
+	@Prop()
+	LastName: string;
 
-  @Prop()
-  DateOfBirth: Date;
+	@Prop()
+	DateOfBirth: Date;
 
-  @Prop()
-  PhoneNumber: string;
+	@Prop()
+	PhoneNumber: string;
 
-  @Prop()
-  Email: string;
+	@Prop()
+	Email: string;
 }
 
 export const PersonSchema = SchemaFactory.createForClass(Person);

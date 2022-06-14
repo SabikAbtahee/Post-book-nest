@@ -7,33 +7,30 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
 export class ProfileService {
-  constructor(
-    @InjectModel(Person.name)
-    private readonly personModel: Model<PersonDocument>,
-  ) {}
+	constructor(
+		@InjectModel(Person.name)
+		private readonly personModel: Model<PersonDocument>
+	) {}
 
-  async create(createProfileDto: CreateProfileDto): Promise<Person> {
-    const createdPerson = await this.personModel.create(createProfileDto);
-    return createdPerson;
-  }
+	async create(createProfileDto: CreateProfileDto): Promise<Person> {
+		const createdPerson = await this.personModel.create(createProfileDto);
+		return createdPerson;
+	}
 
-  findAll() {
-    return `This action returns all profile`;
-  }
+	findAll() {
+		return `This action returns all profile`;
+	}
 
-  findOne(id: number) {
-    return `This action returns a #${id} profile`;
-  }
+	findOne(id: number) {
+		return `This action returns a #${id} profile`;
+	}
 
-  async update(id: string, updateProfileDto: UpdateProfileDto): Promise<any> {
-    const createdPerson = await this.personModel.updateOne(
-      { _id: id },
-      updateProfileDto,
-    );
-    return createdPerson;
-  }
+	async update(id: string, updateProfileDto: UpdateProfileDto): Promise<any> {
+		const createdPerson = await this.personModel.updateOne({ _id: id }, updateProfileDto);
+		return createdPerson;
+	}
 
-  remove(id: number) {
-    return `This action removes a #${id} profile`;
-  }
+	remove(id: number) {
+		return `This action removes a #${id} profile`;
+	}
 }

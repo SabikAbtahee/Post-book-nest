@@ -1,6 +1,6 @@
-import { DatabaseConnectionString, environmentDefault } from "./environment.default";
+import { DatabaseConnectionString, environmentDefault } from './environment.default';
 
 export const environment = {
-    ...environmentDefault,
-    DatabaseConnectionString
-}
+	...environmentDefault,
+	DatabaseConnectionString
+};

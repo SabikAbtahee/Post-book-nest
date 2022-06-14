@@ -6,15 +6,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Person, PersonSchema } from '@shared';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Person.name.toString(),
-        schema: PersonSchema,
-      },
-    ]),
-  ],
-  controllers: [ProfileController],
-  providers: [ProfileService],
+	imports: [
+		MongooseModule.forFeature([
+			{
+				name: Person.name.toString(),
+				schema: PersonSchema
+			}
+		])
+	],
+	controllers: [ProfileController],
+	providers: [ProfileService]
 })
 export class ProfileModule {}
