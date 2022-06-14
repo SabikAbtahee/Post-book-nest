@@ -13,7 +13,7 @@ export class EntityBase {
   @Prop({
     type: Date,
     required: true,
-    default: () => new Date(),
+    default: () => new Date()
   })
   LastUpdateDate: Date;
 
