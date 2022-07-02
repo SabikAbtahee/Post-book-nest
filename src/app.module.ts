@@ -1,6 +1,7 @@
 import { environment } from '@environment';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CoreModule } from './core/core.module';
 import { ProfileModule } from './profile/profile.module';
 
 @Module({
@@ -11,7 +12,8 @@ import { ProfileModule } from './profile/profile.module';
 				return connection;
 			}
 		}),
-		ProfileModule
+		ProfileModule,
+		CoreModule
 	],
 	controllers: [],
 	providers: []
