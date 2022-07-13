@@ -1,6 +1,7 @@
 import { environment } from '@environment';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ProfileModule } from './profile/profile.module';
 
@@ -13,7 +14,8 @@ import { ProfileModule } from './profile/profile.module';
 			}
 		}),
 		ProfileModule,
-		CoreModule
+		CoreModule,
+        AuthModule
 	],
 	controllers: [],
 	providers: []

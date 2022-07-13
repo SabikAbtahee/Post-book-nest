@@ -6,6 +6,9 @@ export const environmentDefault = {
 	SwaggerUrl: 'swagger',
 
 	DataBaseName: 'PostBook',
-	DatabasePort: '27017'
+	DatabasePort: '27017',
+    JwtAccessTokenSecretKey:'SecretJwtAccess',
+    JwtRefreshTokenSecretKey:'SecretJwtRefresh',
+    TokenExpirationTimeInSeconds:60*15
 };
 export const DatabaseConnectionString = `mongodb://localhost:${environmentDefault.DatabasePort}/${environmentDefault.DataBaseName}`;

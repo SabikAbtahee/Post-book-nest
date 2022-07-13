@@ -17,11 +17,12 @@ export class ProfileService {
 		return createdPerson;
 	}
 
-	findAll() {
-		return `This action returns all profile`;
+	async findAll() {
+        const persons = await this.personModel.find();
+		return persons;
 	}
 
-	findOne(id: number) {
+	findOne(id: string) {
 		return `This action returns a #${id} profile`;
 	}
 
