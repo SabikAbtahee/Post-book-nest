@@ -1,13 +1,15 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
-
+import { Request } from 'express';
 @Controller('users')
 export class UsersController {
 	constructor(private readonly userService: UsersService) {}
 
-
-    @Get(':username')
-	findOneByUserName(@Param('username') username: string) {
-		return this.userService.findByUserName(username);
+	@Get()
+	findOneUserByQuery(@Query() query: any) {
+		return this.userService.findUserByQueryParam(query,null);
 	}
+
+    // @Post(@Body)
+
 }
