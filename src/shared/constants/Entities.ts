@@ -7,3 +7,13 @@ export const EntityNames = {
 	Roles: 'Roles',
 	RoleHierarchys: 'RoleHierarchys'
 };
+
+export const EntityNamesClass = {
+	Person: 'Person',
+	User: 'User',
+	UserRoleMap: 'UserRoleMap',
+	FeatureRoleMap: 'FeatureRoleMap',
+	FeatureEndpointMap: 'FeatureEndpointMap',
+	Role: 'Role',
+	RoleHierarchy: 'RoleHierarchy'
+};

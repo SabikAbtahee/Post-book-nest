@@ -9,6 +9,7 @@ export const environmentDefault = {
 	DatabasePort: '27017',
     JwtAccessTokenSecretKey:'SecretJwtAccess',
     JwtRefreshTokenSecretKey:'SecretJwtRefresh',
-    TokenExpirationTimeInSeconds:60*15
+    TokenExpirationTimeInSeconds:60*15,
+    SaltRounds:10
 };
 export const DatabaseConnectionString = `mongodb://localhost:${environmentDefault.DatabasePort}/${environmentDefault.DataBaseName}`;

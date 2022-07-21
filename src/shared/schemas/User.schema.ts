@@ -1,4 +1,4 @@
-import { EntityNames } from '../constants/Entities';
+import { EntityNames, EntityNamesClass } from '../constants/Entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { EntityBase } from './EntityBase.schema';
 import { Document, Types, Schema as MongooseSchema } from 'mongoose';
@@ -14,17 +14,23 @@ export type UserDocument = User & Document;
 export class User extends EntityBase {
 	@Prop({
 		unique: true,
-		index: true
+		index: true,
+		required: true,
+        
 	})
 	UserName: string;
 
 	@Prop({
 		immutable: true,
-		unique: true
+		unique: true,
+		required: true
 	})
 	Email: string;
 
-	@Prop()
+	@Prop({
+		required: true,
+        select: false
+	})
 	Password: string;
 
 	@Prop()
@@ -32,9 +38,10 @@ export class User extends EntityBase {
 
 	@Prop({
 		type: String,
-		ref: 'Person'
+		ref: EntityNamesClass.Person,
+		autopopulate: true
 	})
-	PersonId: Person;
+	ConnectedPersonId: Person;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

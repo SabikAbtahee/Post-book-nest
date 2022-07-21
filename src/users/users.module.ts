@@ -11,14 +11,10 @@ import { UsersService } from './users.service';
 			{
 				name: User.name.toString(),
 				schema: UserSchema
-			},
-            // {
-			// 	name: Person.name.toString(),
-			// 	schema: PersonSchema
-			// }
+			}
 		])
 	],
-    controllers:[UsersController],
+	controllers: [UsersController],
 	providers: [UsersService],
 	exports: [UsersService]
 })
