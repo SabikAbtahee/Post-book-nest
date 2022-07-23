@@ -7,8 +7,8 @@ export const environmentDefault = {
 
 	DataBaseName: 'PostBook',
 	DatabasePort: '27017',
-    JwtAccessTokenSecretKey:'SecretJwtAccess',
-    JwtRefreshTokenSecretKey:'SecretJwtRefresh',
+    JwtAccessTokenSecretKey:'5e749e7c-9d77-4244-9224-5fbd4c865a83',
+    JwtRefreshTokenSecretKey:'547fc6d1-36d8-4aa5-9060-849fb180bb0f',
     AccessTokenExpirationTimeInSeconds:60*15, //15 Minutes
     RefreshTokenExpirationTimeInSeconds:60*60*24, // 1 Day
     SaltRounds:10,

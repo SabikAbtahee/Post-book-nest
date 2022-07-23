@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ErrorHandlerService, SharedService } from '@shared';
 import { Model } from 'mongoose';
-import { Person, PersonDocument } from '../shared/schemas/Person.schema';
+import { Person, PersonDocument } from '../core/schemas/Person.schema';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 

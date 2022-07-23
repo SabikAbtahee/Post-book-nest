@@ -9,7 +9,7 @@ export class BcryptService {
 		return hash;
 	}
 
-	isPasswordMatchWithHash(password, hash): boolean {
+	isContentMatchWithHash(password, hash): boolean {
 		return bcrypt.compareSync(password, hash);
 	}
 

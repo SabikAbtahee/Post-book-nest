@@ -8,5 +8,7 @@ export const ErrorMessages = {
     PhoneNumberExists:'Phone number already exists',
     ItemIdDoesNotExist:'Item Id Does not exist',
     UserNameDoesNotExist:'UserName does not exist',
-    PasswordDoesNotMatch:'Password does not match'
+    PasswordDoesNotMatch:'Password does not match',
+    InvalidRefreshToken:'Invalid Refresh Token',
+    UserLoggedOut:'User is logged out'
 };

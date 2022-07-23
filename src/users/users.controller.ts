@@ -6,10 +6,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UsersController {
 	constructor(private readonly userService: UsersService) {}
 
-	@Get()
-	findOneUserByQuery(@Query() query: any) {
-		return this.userService.findUserByQueryParam(query,null);
-	}
+	// @Get()
+	// findOneUserByQuery(@Query() query: any) {
+	// 	return this.userService.findUserByQueryParam(query,null);
+	// }
 
     // @Post('signup')
     // createUser(@Body() createUserDto:CreateUserDto){

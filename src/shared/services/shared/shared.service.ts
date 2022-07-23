@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../../../shared/schemas/User.schema';
+import { User } from '../../../core/schemas/User.schema';
 import { SignUpDto } from '../../../auth/dto/sign-up.dto';
 import { CreateUserDto } from '../../../users/dto/create-user.dto';
-import { AccessTokenPayload } from '../../../shared/interfaces/token.interface';
+import {
+	AccessTokenPayload,
+	RefreshTokenPayload
+} from '../../../shared/interfaces/token.interface';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
@@ -22,11 +25,19 @@ export class SharedService {
 			Email: user.Email,
 			Roles: user.Roles,
 			sub: user._id,
+			id: user._id,
 			UserName: user.UserName
 		};
 	}
 
-    getUID():string{
-        return uuid();
-    }
+	makeRefreshTokenPayloadFromUser(user: User): RefreshTokenPayload {
+		return {
+			id: user._id,
+			sub: user._id
+		};
+	}
+
+	getUID(): string {
+		return uuid();
+	}
 }

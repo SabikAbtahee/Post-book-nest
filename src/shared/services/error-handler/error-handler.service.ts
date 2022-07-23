@@ -33,10 +33,17 @@ export class ErrorHandlerService {
 	userNotFound() {
 		throw new NotFoundException(ErrorMessages.UserNameDoesNotExist);
 	}
+    userLoggedOut(){
+		throw new ForbiddenException(ErrorMessages.UserLoggedOut);
 
+    }
 	passwordDoesNotMatch() {
 		throw new ForbiddenException(ErrorMessages.PasswordDoesNotMatch);
 	}
+
+    inValidRefreshToken(){
+		throw new ForbiddenException(ErrorMessages.InvalidRefreshToken);
+    }
 
 	userAuthenticationError(err) {}
 
