@@ -1,6 +1,4 @@
-export const AuthConst = {
-    Username:'Username',
+export const LoginPayloadConst = {
+    UserName:'UserName',
     Password:'Password',
-    Password_Not_Match_Message:'Password is incorrect',
-    UserNotFound:'User not found'
 }

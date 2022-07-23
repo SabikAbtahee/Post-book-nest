@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { BcryptService, Roles } from '@shared';
+import { ErrorHandlerService, Roles, SharedService } from '@shared';
 import { Model } from 'mongoose';
 import { User, UserDocument } from '../shared/schemas/User.schema';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -10,20 +10,27 @@ export class UsersService {
 	constructor(
 		@InjectModel(User.name)
 		private readonly userModel: Model<UserDocument>,
-		private bcrypt: BcryptService
+		private errorHandler: ErrorHandlerService,
+        private sharedService:SharedService
 	) {}
 
 	async findByUserName(username: string): Promise<User> {
-		const user = await this.userModel.findOne({
-			Username: { $eq: username }
-		},['UserName','Password']);
+		const user = await this.userModel.findOne(
+			{
+				UserName: { $eq: username }
+			},
+			['UserName', 'Password','Email','Roles']
+		);
 		return user;
 	}
 
 	async findByEmail(email: string): Promise<User> {
-		const user = await this.userModel.findOne({
-			Email: { $eq: email }
-		});
+		const user = await this.userModel.findOne(
+			{
+				Email: { $eq: email }
+			},
+			['UserName', 'Password','Email','Roles']
+		);
 		return user;
 	}
 
@@ -42,10 +49,18 @@ export class UsersService {
 		return user;
 	}
 
-	async createUser(createUserDto: CreateUserDto): Promise<void> {
-		const pass = createUserDto.Password;
-		const hash = await this.bcrypt.getHashGivenPassword(pass);
-		const createdUser = { ...createUserDto, Password: hash, Roles: [Roles.Student] };
-		await this.userModel.create(createdUser);
+	async createUser(createUserDto: CreateUserDto): Promise<any> {
+		const createdUser: CreateUserDto = {
+			...createUserDto,
+			Roles: [Roles.Student],
+            ConnectedPersonId: this.sharedService.getUID()
+		};
+		return await this.userModel.create(createdUser).catch((err) => {
+			this.errorHandler.userCreationError(err);
+		});
+	}
+
+	async updateUserRefreshToken(userId: string, refreshTokenHashed: string) {
+		return await this.userModel.updateOne({ _id: userId }, { RefreshTokenHash: refreshTokenHashed });
 	}
 }

@@ -7,7 +7,7 @@ export type PersonDocument = Person & Document;
 @Schema({
 	collection: EntityNames.Persons,
 	autoIndex: false,
-	optimisticConcurrency: true,
+	optimisticConcurrency: true
 })
 export class Person extends EntityBase {
 	@Prop()
@@ -23,7 +23,7 @@ export class Person extends EntityBase {
 	PhoneNumber: string;
 
 	@Prop()
-	Email: string;
+	Address: string;
 }
 
 export const PersonSchema = SchemaFactory.createForClass(Person);

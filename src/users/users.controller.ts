@@ -11,9 +11,9 @@ export class UsersController {
 		return this.userService.findUserByQueryParam(query,null);
 	}
 
-    @Post()
-    createUser(@Body() createUserDto:CreateUserDto){
-        return this.userService.createUser(createUserDto);
-    }
+    // @Post('signup')
+    // createUser(@Body() createUserDto:CreateUserDto){
+    //     return this.userService.createUser(createUserDto);
+    // }
 
 }

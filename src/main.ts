@@ -1,4 +1,5 @@
 import { environment } from '@environment';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -16,7 +17,7 @@ function configureSwagger(app) {
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
+	app.useGlobalPipes(new ValidationPipe({ whitelist: true ,forbidNonWhitelisted :true}));
 	configureSwagger(app);
 
 	await app.listen(environment.Port);

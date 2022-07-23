@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { EntityBase } from './EntityBase.schema';
 import { Document, Types, Schema as MongooseSchema } from 'mongoose';
 import { Person } from './Person.schema';
+import { Roles } from '../enums/Roles.enum';
 
 export type UserDocument = User & Document;
 
@@ -16,7 +17,7 @@ export class User extends EntityBase {
 		unique: true,
 		index: true,
 		required: true,
-        
+		immutable: true
 	})
 	UserName: string;
 
@@ -33,15 +34,21 @@ export class User extends EntityBase {
 	})
 	Password: string;
 
+    @Prop({
+		required: false
+	})
+	RefreshTokenHash: string;
+
 	@Prop()
-	Roles: string[];
+	Roles: Roles[];
 
 	@Prop({
 		type: String,
 		ref: EntityNamesClass.Person,
-		autopopulate: true
+		autopopulate: true,
+        immutable:true
 	})
-	ConnectedPersonId: Person;
+	ConnectedPersonId: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

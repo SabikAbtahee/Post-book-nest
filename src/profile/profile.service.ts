@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ErrorHandlerService, SharedService } from '@shared';
 import { Model } from 'mongoose';
 import { Person, PersonDocument } from '../shared/schemas/Person.schema';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -9,16 +10,21 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 export class ProfileService {
 	constructor(
 		@InjectModel(Person.name)
-		private readonly personModel: Model<PersonDocument>
+		private readonly personModel: Model<PersonDocument>,
+		private errorHandler: ErrorHandlerService,
+		private sharedService: SharedService
 	) {}
 
-	async create(createProfileDto: CreateProfileDto): Promise<Person> {
-		const createdPerson = await this.personModel.create(createProfileDto);
-		return createdPerson;
+	async createProfile(createProfileDto: CreateProfileDto, ItemId?: string): Promise<any> {
+		return await this.personModel
+			.create({ _id: ItemId ? ItemId : this.sharedService.getUID(), ...createProfileDto })
+			.catch((err) => {
+				this.errorHandler.personMutationError(err);
+			});
 	}
 
 	async findAll() {
-        const persons = await this.personModel.find();
+		const persons = await this.personModel.find();
 		return persons;
 	}
 
@@ -26,9 +32,16 @@ export class ProfileService {
 		return `This action returns a #${id} profile`;
 	}
 
-	async update(id: string, updateProfileDto: UpdateProfileDto): Promise<any> {
-		const createdPerson = await this.personModel.updateOne({ _id: id }, updateProfileDto);
-		return createdPerson;
+	async update(updateProfileDto: UpdateProfileDto): Promise<any> {
+		const { _id, ...result } = updateProfileDto;
+		return await this.personModel
+			.updateOne({ _id: _id }, result)
+			.then((res) => {
+                return this.errorHandler.checkNotMatchedError(res);
+			})
+			.catch((err) => {
+				this.errorHandler.personMutationError(err);
+			});
 	}
 
 	remove(id: number) {
