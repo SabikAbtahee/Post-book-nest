@@ -1,11 +1,14 @@
 import { environment } from '@environment';
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
+import { JwtAuthGuard, RolesGuard } from '@shared';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ProfileModule } from './profile/profile.module';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { PostModule } from './post/post.module';
 
 @Module({
 	imports: [
@@ -23,9 +26,19 @@ import { UsersModule } from './users/users.module';
 		UsersModule,
 		CoreModule,
 		AuthModule,
-        SharedModule
+		SharedModule,
+		PostModule,
 	],
 	controllers: [],
-	providers: []
+	providers: [
+		{
+			provide: APP_GUARD,
+			useClass: JwtAuthGuard
+		},
+		{
+			provide: APP_GUARD,
+			useClass: RolesGuard
+		}
+	]
 })
 export class AppModule {}

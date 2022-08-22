@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ErrorHandlerService, Roles, SharedService } from '@shared';
+import { ErrorHandlerService, Role, SharedService, User, UserDocument, UserReadables } from '@shared';
 import { Model } from 'mongoose';
-import { User, UserDocument } from '../core/schemas/User.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
@@ -14,15 +13,20 @@ export class UsersService {
 		private sharedService: SharedService
 	) {}
 
-    async findUser(filter,projection:string[]):Promise<User>{
-        const user = await this.userModel.findOne(filter,projection);
-        return user;
-    }
+	async findUser(filter, projection: string[]): Promise<User> {
+		const user = await this.userModel.findOne(filter, projection);
+		return user;
+	}
 
-    async findUsers(filter,projection:string[]):Promise<User[]>{
-        const user = await this.userModel.find(filter,projection);
-        return user;
-    }
+	async findCurrentUser(userId): Promise<User> {
+		const user = await this.userModel.findOne({ _id: userId }, UserReadables.UserPublic);
+		return user;
+	}
+
+	async findUsers(filter, projection: string[]): Promise<User[]> {
+		const user = await this.userModel.find(filter, projection);
+		return user;
+	}
 
 	// async findUserByQueryParam(
 	// 	queryParams,
@@ -42,7 +46,7 @@ export class UsersService {
 	async createUser(createUserDto: CreateUserDto): Promise<any> {
 		const createdUser: CreateUserDto = {
 			...createUserDto,
-			Roles: [Roles.Student],
+			Roles: [Role.Student],
 			ConnectedPersonId: this.sharedService.getUID()
 		};
 		return await this.userModel.create(createdUser).catch((err) => {

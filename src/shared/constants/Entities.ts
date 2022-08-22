@@ -5,7 +5,9 @@ export const EntityNames = {
 	FeatureRoleMaps: 'FeatureRoleMaps',
 	FeatureEndpointMaps: 'FeatureEndpointMaps',
 	Roles: 'Roles',
-	RoleHierarchys: 'RoleHierarchys'
+	RoleHierarchys: 'RoleHierarchys',
+
+    Posts:'Posts'
 };
 
 export const EntityNamesClass = {
@@ -15,5 +17,6 @@ export const EntityNamesClass = {
 	FeatureRoleMap: 'FeatureRoleMap',
 	FeatureEndpointMap: 'FeatureEndpointMap',
 	Role: 'Role',
-	RoleHierarchy: 'RoleHierarchy'
+	RoleHierarchy: 'RoleHierarchy',
+    Post:'Post'
 };

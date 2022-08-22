@@ -1,8 +1,9 @@
 import { environment } from '@environment';
 import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { RolesGuard } from '@shared';
 import { AppModule } from './app.module';
 
 function configureSwagger(app) {
@@ -18,6 +19,7 @@ function configureSwagger(app) {
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 	app.useGlobalPipes(new ValidationPipe({ whitelist: true ,forbidNonWhitelisted :true}));
+    // app.useGlobalGuards(new RolesGuard(new Reflector()));
 	configureSwagger(app);
     app.enableCors({
         origin:environment.Origin,

@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { EntityBase } from './EntityBase.schema';
 import { Document, Types, Schema as MongooseSchema } from 'mongoose';
 import { Person } from './Person.schema';
-import { Roles } from '../../shared/enums/Roles.enum';
+import { Role } from '../../shared/enums/Role.enum';
 
 export type UserDocument = User & Document;
 
@@ -40,7 +40,7 @@ export class User extends EntityBase {
 	RefreshTokenHash: string;
 
 	@Prop()
-	Roles: Roles[];
+	Roles: Role[];
 
 	@Prop({
 		type: String,
