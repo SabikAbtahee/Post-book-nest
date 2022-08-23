@@ -1,5 +1,5 @@
 import { Status } from '@shared';
-import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, Length } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, Length } from 'class-validator';
 
 export class CreatePostDto {
 	@IsNotEmpty()
@@ -18,4 +18,5 @@ export class CreatePostDto {
 	@IsNotEmpty()
 	@IsEnum(Status)
 	Status: Status;
+    
 }

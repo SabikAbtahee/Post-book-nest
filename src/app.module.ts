@@ -9,6 +9,9 @@ import { ProfileModule } from './profile/profile.module';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 import { PostModule } from './post/post.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { CourseModule } from './course/course.module';
+import { QuizModule } from './quiz/quiz.module';
 
 @Module({
 	imports: [
@@ -28,6 +31,11 @@ import { PostModule } from './post/post.module';
 		AuthModule,
 		SharedModule,
 		PostModule,
+        MulterModule.register({
+            dest:'./uploads'
+        }),
+        CourseModule,
+        QuizModule
 	],
 	controllers: [],
 	providers: [
