@@ -13,7 +13,7 @@ export const environmentDefault = {
 	RefreshTokenExpirationTimeInSeconds: 60 * 60 * 24, // 1 Day
 	SaltRounds: 10,
 	PasswordRegex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{6,15}$/,
-	Origin: 'http://postbook.com:4210'
+	Origin: 'https://postbookbackend.web.app'
 };
 // export const DatabaseConnectionString = `mongodb://localhost:${environmentDefault.DatabasePort}/${environmentDefault.DataBaseName}`;
 export const DatabaseConnectionString = `mongodb+srv://sabikabtahee:cdtDpWN7q72QR7vV@cluster0.hipqxmg.mongodb.net/?retryWrites=true&w=majority`;
