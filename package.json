@@ -21,7 +21,7 @@
         "test:e2e": "jest --config ./test/jest-e2e.json",
         "prettier:lint": "prettier --config ./.prettierrc --list-different \"src/**/*{.ts}\"",
         "prettier:fix": "prettier --config ./.prettierrc --write \"src/**/*.ts\"",
-        "postinstall": "npm run prestart:prod"
+        "postinstall": "npm run start:prod"
     },
     "dependencies": {
         "@nestjs/common": "^8.0.0",
