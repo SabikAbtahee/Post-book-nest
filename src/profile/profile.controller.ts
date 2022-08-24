@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpCode } from '@nestjs/common';
+import {
+	Controller,
+	Get,
+	Post,
+	Body,
+	Patch,
+	Param,
+	Delete,
+	UseGuards,
+	HttpCode
+} from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
@@ -20,7 +30,7 @@ export class ProfileController {
 	}
 
 	@Post('update')
-    @HttpCode(200)
+	@HttpCode(200)
 	update(@Body() updateProfileDto: UpdateProfileDto) {
 		return this.profileService.update(updateProfileDto);
 	}

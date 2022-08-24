@@ -13,7 +13,7 @@ import { JwtRefreshStrategy } from './strategies/jwt_refresh.strategy';
 	providers: [AuthService, JwtAccessStrategy, JwtRefreshStrategy],
 	imports: [
 		UsersModule,
-        ProfileModule,
+		ProfileModule,
 		PassportModule,
 		JwtModule.register({
 			signOptions: { expiresIn: environment.AccessTokenExpirationTimeInSeconds }

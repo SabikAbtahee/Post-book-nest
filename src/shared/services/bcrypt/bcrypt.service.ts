@@ -12,5 +12,4 @@ export class BcryptService {
 	isContentMatchWithHash(password, hash): boolean {
 		return bcrypt.compareSync(password, hash);
 	}
-
 }

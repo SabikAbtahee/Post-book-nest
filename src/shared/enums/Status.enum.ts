@@ -1,4 +1,4 @@
 export enum Status {
-    Private,
-    Public
+	Private,
+	Public
 }

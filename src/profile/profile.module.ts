@@ -16,6 +16,6 @@ import { Person, PersonSchema } from '@shared';
 	],
 	controllers: [ProfileController],
 	providers: [ProfileService],
-    exports:[ProfileService]
+	exports: [ProfileService]
 })
 export class ProfileModule {}

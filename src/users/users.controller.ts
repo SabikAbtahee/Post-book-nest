@@ -23,8 +23,8 @@ export class UsersController {
 		return this.userService.findUsers({}, UserReadables.User);
 	}
 
-    @Get('current')
-    getCurrentUser(@GetCurrentUser('id') userId: string){
-        return this.userService.findCurrentUser(userId);
-    }
+	@Get('current')
+	getCurrentUser(@GetCurrentUser('id') userId: string) {
+		return this.userService.findCurrentUser(userId);
+	}
 }

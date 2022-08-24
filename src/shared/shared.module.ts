@@ -5,7 +5,7 @@ import { SharedService } from './services/shared/shared.service';
 
 @Global()
 @Module({
-	exports: [BcryptService, SharedService,ErrorHandlerService],
-	providers: [BcryptService, SharedService,ErrorHandlerService]
+	exports: [BcryptService, SharedService, ErrorHandlerService],
+	providers: [BcryptService, SharedService, ErrorHandlerService]
 })
 export class SharedModule {}

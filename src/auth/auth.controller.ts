@@ -8,14 +8,14 @@ import { SignUpDto } from './dto/sign-up.dto';
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
-    @Public()
+	@Public()
 	@Post('signin')
 	@HttpCode(HttpStatus.OK)
 	async signIn(@Body() signInDto: SignInDto) {
 		return this.authService.signIn(signInDto);
 	}
 
-    @Public()
+	@Public()
 	@Post('signup')
 	@HttpCode(HttpStatus.CREATED)
 	signUp(@Body() signUpDto: SignUpDto): Promise<Token> {
@@ -27,8 +27,8 @@ export class AuthController {
 	logOut(@GetCurrentUser('id') userId: string) {
 		return this.authService.logOut(userId);
 	}
-    
-    @Public()
+
+	@Public()
 	@UseGuards(JwtRefreshGuard)
 	@Post('refresh')
 	refreshToken(

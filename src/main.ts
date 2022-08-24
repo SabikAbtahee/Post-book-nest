@@ -18,16 +18,15 @@ function configureSwagger(app) {
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
-	app.useGlobalPipes(new ValidationPipe({ whitelist: true ,forbidNonWhitelisted :true}));
-    // app.useGlobalGuards(new RolesGuard(new Reflector()));
+	app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
+	// app.useGlobalGuards(new RolesGuard(new Reflector()));
 	configureSwagger(app);
-    app.enableCors({
-        origin:environment.Origin,
-        credentials:true,
-        preflightContinue:false,
-        optionsSuccessStatus:204
-        
-    });
+	app.enableCors({
+		origin: environment.Origin,
+		credentials: true,
+		preflightContinue: false,
+		optionsSuccessStatus: 204
+	});
 	await app.listen(environment.Port);
 }
 bootstrap();

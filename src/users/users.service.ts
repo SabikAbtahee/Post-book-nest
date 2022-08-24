@@ -1,6 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ErrorHandlerService, Role, SharedService, User, UserDocument, UserReadables } from '@shared';
+import {
+	ErrorHandlerService,
+	Role,
+	SharedService,
+	User,
+	UserDocument,
+	UserReadables
+} from '@shared';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 

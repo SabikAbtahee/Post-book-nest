@@ -11,12 +11,11 @@ export class CreatePostDto {
 	@Length(5, 400)
 	Description: string;
 
-    @IsOptional()
+	@IsOptional()
 	@IsUUID('4')
 	Author: string;
 
 	@IsNotEmpty()
 	@IsEnum(Status)
 	Status: Status;
-    
 }

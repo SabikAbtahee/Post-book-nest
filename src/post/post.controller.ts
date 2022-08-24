@@ -1,12 +1,4 @@
-import {
-	Controller,
-	Get,
-	Post,
-	Body,
-	Patch,
-	Param,
-	Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { LikePostDto, UpdatePostDto } from './dto/update-post.dto';
@@ -39,17 +31,15 @@ export class PostController {
 		return this.postService.patch(id, updatePostDto);
 	}
 
-    @Patch('like/:id')
-    likePost(@Param('id') id: string, @Body() likePostDto: LikePostDto){
+	@Patch('like/:id')
+	likePost(@Param('id') id: string, @Body() likePostDto: LikePostDto) {
 		return this.postService.likePost(id, likePostDto);
+	}
 
-    }
-
-    @Patch('unlike/:id')
-    unlikePost(@Param('id') id: string, @Body() likePostDto: LikePostDto){
+	@Patch('unlike/:id')
+	unlikePost(@Param('id') id: string, @Body() likePostDto: LikePostDto) {
 		return this.postService.unlikePost(id, likePostDto);
-
-    }
+	}
 
 	@Patch(':id')
 	updatePost(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {

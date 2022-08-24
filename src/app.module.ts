@@ -31,11 +31,11 @@ import { QuizModule } from './quiz/quiz.module';
 		AuthModule,
 		SharedModule,
 		PostModule,
-        MulterModule.register({
-            dest:'./uploads'
-        }),
-        CourseModule,
-        QuizModule
+		MulterModule.register({
+			dest: './uploads'
+		}),
+		CourseModule,
+		QuizModule
 	],
 	controllers: [],
 	providers: [

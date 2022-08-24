@@ -30,11 +30,11 @@ export class User extends EntityBase {
 
 	@Prop({
 		required: true,
-        select: false
+		select: false
 	})
 	Password: string;
 
-    @Prop({
+	@Prop({
 		required: false
 	})
 	RefreshTokenHash: string;
@@ -46,7 +46,7 @@ export class User extends EntityBase {
 		type: String,
 		ref: EntityNamesClass.Person,
 		autopopulate: true,
-        immutable:true
+		immutable: true
 	})
 	ConnectedPersonId: string;
 }

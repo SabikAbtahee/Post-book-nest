@@ -37,7 +37,7 @@ export class Post extends EntityBase {
 	@Prop({ type: Object, required: false })
 	Comments: Comments;
 
-	@Prop({ type:Array<String>,required: false })
+	@Prop({ type: Array<string>, required: false })
 	Likes: string[];
 }
 

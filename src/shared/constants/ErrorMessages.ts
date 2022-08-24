@@ -5,10 +5,10 @@ export const ErrorMessages = {
 	EmailExists: 'Email already Exists',
 	UserNameAndEmailExists: 'UserName and Email already Exists',
 	InternalServerError: 'Internal Server Error',
-    PhoneNumberExists:'Phone number already exists',
-    ItemIdDoesNotExist:'Item Id Does not exist',
-    UserNameDoesNotExist:'UserName does not exist',
-    PasswordDoesNotMatch:'Password does not match',
-    InvalidRefreshToken:'Invalid Refresh Token',
-    UserLoggedOut:'User is logged out'
+	PhoneNumberExists: 'Phone number already exists',
+	ItemIdDoesNotExist: 'Item Id Does not exist',
+	UserNameDoesNotExist: 'UserName does not exist',
+	PasswordDoesNotMatch: 'Password does not match',
+	InvalidRefreshToken: 'Invalid Refresh Token',
+	UserLoggedOut: 'User is logged out'
 };

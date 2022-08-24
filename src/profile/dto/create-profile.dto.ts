@@ -1,32 +1,32 @@
 import { BaseDto } from '@shared';
-import { IsString,IsNotEmpty,IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsDateString } from 'class-validator';
 
 export class CreateProfileDto extends BaseDto {
 	@IsString()
-    @IsNotEmpty()
+	@IsNotEmpty()
 	FirstName: string;
 
 	@IsString()
-    @IsNotEmpty()
+	@IsNotEmpty()
 	LastName: string;
 
-    @IsDateString()
+	@IsDateString()
 	DateOfBirth: Date;
 
 	@IsString()
-    @IsNotEmpty()
+	@IsNotEmpty()
 	PhoneNumber: string;
 
 	@IsString()
-    @IsNotEmpty()
+	@IsNotEmpty()
 	Address: string;
 
-    constructor(){
-        super();
-        this.FirstName = null;
-        this.LastName = null;
-        this.PhoneNumber = null;
-        this.DateOfBirth = null;
-        this.Address = null;
-    }
+	constructor() {
+		super();
+		this.FirstName = null;
+		this.LastName = null;
+		this.PhoneNumber = null;
+		this.DateOfBirth = null;
+		this.Address = null;
+	}
 }

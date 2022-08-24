@@ -4,8 +4,8 @@ import { CreatePostDto } from './create-post.dto';
 
 export class UpdatePostDto extends PartialType(CreatePostDto) {}
 
-export class LikePostDto{
-    @IsOptional()
-    @IsString()
-    Likes:string
+export class LikePostDto {
+	@IsOptional()
+	@IsString()
+	Likes: string;
 }

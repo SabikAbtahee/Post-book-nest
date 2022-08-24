@@ -37,7 +37,7 @@ export class ProfileService {
 		return await this.personModel
 			.updateOne({ _id: _id }, result)
 			.then((res) => {
-                return this.errorHandler.checkNotMatchedError(res);
+				return this.errorHandler.checkNotMatchedError(res);
 			})
 			.catch((err) => {
 				this.errorHandler.personMutationError(err);
