@@ -17,9 +17,9 @@ import { QuizModule } from './quiz/quiz.module';
 	imports: [
 		MongooseModule.forRoot(environment.DatabaseConnectionString, {
 			connectionFactory: (connection) => {
-				connection.plugin(require('./shared/plugins/global.plugins').updateLastUpdateDate);
+				connection.plugin(require('./core/plugins/global.plugins').updateLastUpdateDate);
 				connection.plugin(
-					require('./shared/plugins/global.plugins').onCreationGenericPropertyInsertion
+					require('./core/plugins/global.plugins').onCreationGenericPropertyInsertion
 				);
 				connection.plugin(require('mongoose-unique-validator'));
 				return connection;
