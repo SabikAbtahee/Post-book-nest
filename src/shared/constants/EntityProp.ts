@@ -11,5 +11,6 @@ export const UserReadables = {
 		'Status',
 		'Comments',
 		'Likes'
-	]
+	],
+	[EntityNamesClass.Course]: ['Title', 'Description','Chapters']
 };

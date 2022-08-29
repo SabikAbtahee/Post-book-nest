@@ -4,3 +4,9 @@ export interface Comments{
     Time:Date;
 }
 
+export interface Chapter{
+    Title:string;
+    Description:string;
+    VideoSourceLink:string;
+}
+

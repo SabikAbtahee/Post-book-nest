@@ -8,6 +8,8 @@ export * from '../core/schemas/EntityBase.schema';
 export * from '../core/schemas/Person.schema';
 export * from '../core/schemas/Post.schema';
 export * from '../core/schemas/User.schema';
+export * from '../core/schemas/Course.schema';
+
 
 
 export * from '../core/guards/jwt-auth.guard';
