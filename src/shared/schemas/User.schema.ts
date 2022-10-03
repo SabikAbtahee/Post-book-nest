@@ -1,9 +1,9 @@
-import { EntityNames, EntityNamesClass } from '../../shared/constants/Entities';
+import { EntityNames, EntityNamesClass } from '../constants/Entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { EntityBase } from './EntityBase.schema';
 import { Document, Types, Schema as MongooseSchema } from 'mongoose';
 import { Person } from './Person.schema';
-import { Role } from '../../shared/enums/Role.enum';
+import { Role } from '../enums/Role.enum';
 
 export type UserDocument = User & Document;
 
