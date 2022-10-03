@@ -4,10 +4,11 @@ export * from './constants/EntityProp';
 
 // export * from './constants/EntityProp';
 
-export * from '../core/schemas/EntityBase.schema';
-export * from '../core/schemas/Person.schema';
-export * from '../core/schemas/Post.schema';
-export * from '../core/schemas/User.schema';
+export * from './schemas/EntityBase.schema';
+export * from './schemas/Person.schema';
+export * from '../post/schema/Post.schema';
+export * from './schemas/User.schema';
+
 
 export * from '../core/guards/jwt-auth.guard';
 export * from '../core/guards/jwt-refresh.guard';

@@ -1,4 +1,4 @@
-import { EntityNames } from '../../shared/constants/Entities';
+import { EntityNames } from '../constants/Entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { EntityBase } from './EntityBase.schema';
