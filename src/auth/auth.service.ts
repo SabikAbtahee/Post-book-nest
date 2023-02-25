@@ -1,4 +1,3 @@
-import { environment } from '@environment';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import {
@@ -7,6 +6,7 @@ import {
 	ConfigService,
 	EmailDto,
 	ErrorHandlerService,
+	ResetPasswordLinkResponse,
 	SharedService,
 	Token,
 	User,
@@ -83,40 +83,46 @@ export class AuthService {
 		return token;
 	}
 
-	// async forgotPassword(emailDto: EmailDto): Promise<any> {
-	// 	const emailFound = await this.usersService.doesEmailExist(emailDto.Email);
-	// 	if (!emailFound) this.errorHandler.emailNotFound();
-
-	// 	return {
-	// 		message: 'Reset password link sent to email'
-	// 	};
-	// }
-
-	async sendPasswordResetEmail(email: string) {
+	async sendPasswordResetEmail(email: string): Promise<ResetPasswordLinkResponse> {
 		const emailFound = await this.usersService.doesEmailExist(email);
 		if (!emailFound) this.errorHandler.emailNotFound();
-
-		// const token = await this.generatePasswordResetToken();
-		// const resetPasswordUrl = `${this.configService.get('AppURL')}/reset-password?token=${token}`;
-		this.emailService.sendEmail('95000123@yopmail.com', 'Testing Link', 'Hello');
+		const user = await this.usersService.findUser({ Email: { $eq: email } }, UserReadables.User);
+		const token = await this.generatePasswordResetToken(user);
+		const resetPasswordUrl = `${this.configService.get('AppURL')}/reset-password?token=${token}`;
+		const sentMessageInfo = await this.emailService.sendEmail(
+			email,
+			'Forgot Password Reset Link',
+			resetPasswordUrl
+		);
+		return {
+			MessageId: sentMessageInfo.messageId,
+			Success: true
+		};
 	}
 
-	generatePasswordResetToken() {}
+	private async generatePasswordResetToken(user: User) {
+		const payload = { sub: user._id, pass: user.Password };
+		const options = {
+			expiresIn: this.configService.get('PasswordResetExpirationTime'),
+			secret: this.configService.get('JwtResetPasswordTokenSecretKey')
+		};
+		return await this.jwtService.signAsync(payload, options);
+	}
 
 	async getTokens(user: any): Promise<Token> {
 		return {
 			access_token: await this.jwtService.signAsync(
 				this.sharedService.makeAccessTokenPayloadFromUser(user),
 				{
-					secret: environment.JwtAccessTokenSecretKey,
-					expiresIn: environment.AccessTokenExpirationTimeInSeconds
+					secret: this.configService.get('JwtAccessTokenSecretKey'),
+					expiresIn: this.configService.get('AccessTokenExpirationTimeInSeconds')
 				}
 			),
 			refresh_token: await this.jwtService.signAsync(
 				this.sharedService.makeRefreshTokenPayloadFromUser(user),
 				{
-					secret: environment.JwtRefreshTokenSecretKey,
-					expiresIn: environment.RefreshTokenExpirationTimeInSeconds
+					secret: this.configService.get('JwtRefreshTokenSecretKey'),
+					expiresIn: this.configService.get('RefreshTokenExpirationTimeInSeconds')
 				}
 			)
 		};
@@ -127,8 +133,8 @@ export class AuthService {
 			access_token: await this.jwtService.signAsync(
 				this.sharedService.makeAccessTokenPayloadFromUser(user),
 				{
-					secret: environment.JwtAccessTokenSecretKey,
-					expiresIn: environment.AccessTokenExpirationTimeInSeconds
+					secret: this.configService.get('JwtAccessTokenSecretKey'),
+					expiresIn: this.configService.get('AccessTokenExpirationTimeInSeconds')
 				}
 			)
 		};

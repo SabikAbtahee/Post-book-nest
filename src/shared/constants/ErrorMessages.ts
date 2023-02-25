@@ -11,5 +11,6 @@ export const ErrorMessages = {
 	PasswordDoesNotMatch: 'Password does not match',
 	InvalidRefreshToken: 'Invalid Refresh Token',
 	UserLoggedOut: 'User is logged out',
-	EmailDoesNotExists: 'Email does not exist'
+	EmailDoesNotExists: 'Email does not exist',
+	ResetPasswordEmailNotSent: 'Sorry reset link could not be sent for server issue try again later'
 };

@@ -8,13 +8,15 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtAccessStrategy } from './strategies/jwt_access.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt_refresh.strategy';
+import { MailModule } from '../mailer/mailer.module';
 
 @Module({
 	providers: [AuthService, JwtAccessStrategy, JwtRefreshStrategy],
 	imports: [
 		UsersModule,
-        ProfileModule,
+		ProfileModule,
 		PassportModule,
+		MailModule,
 		JwtModule.register({
 			signOptions: { expiresIn: environment.AccessTokenExpirationTimeInSeconds }
 		})

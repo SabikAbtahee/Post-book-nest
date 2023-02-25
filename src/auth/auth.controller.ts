@@ -1,5 +1,12 @@
 import { Controller, Post, UseGuards, Body, HttpCode, HttpStatus } from '@nestjs/common';
-import { EmailDto, GetCurrentUser, JwtAuthGuard, JwtRefreshGuard, Token } from '@shared';
+import {
+	EmailDto,
+	GetCurrentUser,
+	JwtAuthGuard,
+	JwtRefreshGuard,
+	ResetPasswordLinkResponse,
+	Token
+} from '@shared';
 import { Public } from 'src/core/decorators/isPublic.decorator';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/sign-in.dto';
