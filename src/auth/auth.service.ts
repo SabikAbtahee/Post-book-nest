@@ -4,6 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import {
 	AccessToken,
 	BcryptService,
+	ConfigService,
+	EmailDto,
 	ErrorHandlerService,
 	SharedService,
 	Token,
@@ -15,6 +17,7 @@ import { ProfileService } from '../profile/profile.service';
 import { UsersService } from '../users/users.service';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
+import { EmailService } from '../mailer/services/mailer/mailer.service';
 
 @Injectable()
 export class AuthService {
@@ -24,8 +27,10 @@ export class AuthService {
 		private bcryptService: BcryptService,
 		private bcrypt: BcryptService,
 		private sharedService: SharedService,
+		private configService: ConfigService,
 		private profileService: ProfileService,
-		private errorHandler: ErrorHandlerService
+		private errorHandler: ErrorHandlerService,
+		private emailService: EmailService
 	) {}
 
 	async signUp(signUpDto: SignUpDto): Promise<Token> {
@@ -77,6 +82,26 @@ export class AuthService {
 		const token = await this.getAccessToken(user);
 		return token;
 	}
+
+	// async forgotPassword(emailDto: EmailDto): Promise<any> {
+	// 	const emailFound = await this.usersService.doesEmailExist(emailDto.Email);
+	// 	if (!emailFound) this.errorHandler.emailNotFound();
+
+	// 	return {
+	// 		message: 'Reset password link sent to email'
+	// 	};
+	// }
+
+	async sendPasswordResetEmail(email: string) {
+		const emailFound = await this.usersService.doesEmailExist(email);
+		if (!emailFound) this.errorHandler.emailNotFound();
+
+		// const token = await this.generatePasswordResetToken();
+		// const resetPasswordUrl = `${this.configService.get('AppURL')}/reset-password?token=${token}`;
+		this.emailService.sendEmail('95000123@yopmail.com', 'Testing Link', 'Hello');
+	}
+
+	generatePasswordResetToken() {}
 
 	async getTokens(user: any): Promise<Token> {
 		return {

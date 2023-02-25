@@ -1,6 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ErrorHandlerService, Role, SharedService, User, UserDocument, UserReadables } from '@shared';
+import {
+	ErrorHandlerService,
+	Role,
+	SharedService,
+	User,
+	UserDocument,
+	UserReadables
+} from '@shared';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -18,6 +25,11 @@ export class UsersService {
 		return user;
 	}
 
+	async doesEmailExist(email: string): Promise<boolean> {
+		const isFound = await this.userModel.findOne({ Email: { $eq: email } });
+		return !!isFound;
+	}
+
 	async findCurrentUser(userId): Promise<User> {
 		const user = await this.userModel.findOne({ _id: userId }, UserReadables.UserPublic);
 		return user;
@@ -27,21 +39,6 @@ export class UsersService {
 		const user = await this.userModel.find(filter, projection);
 		return user;
 	}
-
-	// async findUserByQueryParam(
-	// 	queryParams,
-	// 	projections?: string[],
-	// 	nestedProjections?: string[]
-	// ): Promise<User> {
-	// 	let filterObject = {};
-	// 	for (let i in queryParams) {
-	// 		filterObject[i] = { $eq: queryParams[i] };
-	// 	}
-	// 	const user = await this.userModel
-	// 		.findOne(filterObject, projections)
-	// 		.populate('ConnectedPersonId', ['FirstName']);
-	// 	return user;
-	// }
 
 	async createUser(createUserDto: CreateUserDto): Promise<any> {
 		const createdUser: CreateUserDto = {

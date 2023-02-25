@@ -33,17 +33,16 @@ export class ErrorHandlerService {
 	userNotFound() {
 		throw new NotFoundException(ErrorMessages.UserNameDoesNotExist);
 	}
-    userLoggedOut(){
+	userLoggedOut() {
 		throw new ForbiddenException(ErrorMessages.UserLoggedOut);
-
-    }
+	}
 	passwordDoesNotMatch() {
 		throw new ForbiddenException(ErrorMessages.PasswordDoesNotMatch);
 	}
 
-    inValidRefreshToken(){
+	inValidRefreshToken() {
 		throw new ForbiddenException(ErrorMessages.InvalidRefreshToken);
-    }
+	}
 
 	userAuthenticationError(err) {}
 
@@ -59,5 +58,9 @@ export class ErrorHandlerService {
 		if (err?.name == 'HttpException') {
 			throw err;
 		}
+	}
+
+	emailNotFound() {
+		throw new NotFoundException(ErrorMessages.EmailDoesNotExists);
 	}
 }

@@ -23,6 +23,7 @@
         "prettier:fix": "prettier --config ./.prettierrc --write \"src/**/*.ts\""
     },
     "dependencies": {
+        "@nestjs-modules/mailer": "^1.8.1",
         "@nestjs/common": "^8.0.0",
         "@nestjs/core": "^8.0.0",
         "@nestjs/jwt": "^9.0.0",
@@ -39,6 +40,7 @@
         "D": "^1.0.0",
         "mongoose": "^6.3.6",
         "mongoose-unique-validator": "^3.1.0",
+        "nodemailer": "^6.9.1",
         "passport": "^0.6.0",
         "passport-jwt": "^4.0.0",
         "passport-local": "^1.0.0",
