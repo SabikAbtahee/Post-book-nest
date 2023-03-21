@@ -12,12 +12,13 @@ import {
 	User,
 	UserReadables
 } from '@shared';
-import { CreateProfileDto } from 'src/profile/dto/create-profile.dto';
+import { CreateProfileDto } from '../profile/dto/create-profile.dto';
 import { ProfileService } from '../profile/profile.service';
 import { UsersService } from '../users/users.service';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
 import { EmailService } from '../mailer/services/mailer/mailer.service';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -100,12 +101,26 @@ export class AuthService {
 		};
 	}
 
+	async resetPassword(resetPasswordDto: ResetPasswordDto) {
+		try {
+			console.log(resetPasswordDto.Token);
+			const payload = await this.jwtService.verifyAsync(resetPasswordDto.Token, {
+				secret: this.configService.get('JwtResetPasswordTokenSecretKey')
+			});
+            
+			console.log(payload);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	private async generatePasswordResetToken(user: User) {
 		const payload = { sub: user._id, pass: user.Password };
 		const options = {
 			expiresIn: this.configService.get('PasswordResetExpirationTime'),
 			secret: this.configService.get('JwtResetPasswordTokenSecretKey')
 		};
+		console.log(options);
 		return await this.jwtService.signAsync(payload, options);
 	}
 

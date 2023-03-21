@@ -16,6 +16,7 @@ export class EmailService {
 				text: text
 			})
 			.catch((err) => {
+				console.log(err);
 				throw new HttpException(
 					ErrorMessages.ResetPasswordEmailNotSent,
 					HttpStatus.INTERNAL_SERVER_ERROR
