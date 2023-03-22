@@ -89,7 +89,9 @@ export class AuthService {
 		if (!emailFound) this.errorHandler.emailNotFound();
 		const user = await this.usersService.findUser({ Email: { $eq: email } }, UserReadables.User);
 		const token = await this.generatePasswordResetToken(user);
-		const resetPasswordUrl = `${this.configService.get('AppURL')}/reset-password?token=${token}`;
+		const resetPasswordUrl = `${this.configService.get(
+			'AppURL'
+		)}/authentication/reset-password?token=${token}`;
 		const sentMessageInfo = await this.emailService.sendEmail(
 			email,
 			'Forgot Password Reset Link',
@@ -107,7 +109,7 @@ export class AuthService {
 			const payload = await this.jwtService.verifyAsync(resetPasswordDto.Token, {
 				secret: this.configService.get('JwtResetPasswordTokenSecretKey')
 			});
-            
+
 			console.log(payload);
 		} catch (err) {
 			console.log(err);

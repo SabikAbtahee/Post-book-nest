@@ -17,7 +17,7 @@ export const environmentDefault = {
 	Origin: 'http://postbook.com:4210',
 	AppURL: 'http://postbook.com:4210',
 	MailApiKey:
-		'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',
+		'xkeysib-d47e15744974439feb0f3393026a44b72405c57ba7feb68efb82f166f8306fdb-aVKOTJ9j4Di5aMLHSABIK',
 	MailSenderEmail: 'PostBook@PhoenixHelixTech.com',
 	PasswordResetExpirationTime: '1h'
 };
