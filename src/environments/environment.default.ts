@@ -6,7 +6,7 @@ export const environmentDefault = {
 	SwaggerUrl: 'swagger',
 
 	DataBaseName: 'PostBook',
-	DatabasePort: '27017',
+	DatabasePort: '27018',
 	JwtAccessTokenSecretKey: '5e749e7c-9d77-4244-9224-5fbd4c865a83',
 	JwtRefreshTokenSecretKey: '547fc6d1-36d8-4aa5-9060-849fb180bb0f',
 	JwtResetPasswordTokenSecretKey: '547fc6d1-36d8-4aa5-9060-849fb180bb0f',
@@ -17,7 +17,7 @@ export const environmentDefault = {
 	Origin: 'http://postbook.com:4210',
 	AppURL: 'http://postbook.com:4210',
 	MailApiKey:
-		'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',
+		'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',
 	MailSenderEmail: 'PostBook@PhoenixHelixTech.com',
 	PasswordResetExpirationTime: '1h'
 };
